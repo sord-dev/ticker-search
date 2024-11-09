@@ -20,7 +20,7 @@ module.exports.getTickers = (req, res) => {
 
 module.exports.getTicker = (req, res) => {
     const ticker = req.params.ticker;
-    const record = csvData.find(row => row.Symbol === ticker); // Replace 'ticker' with the column you're interested in
+    const record = csvData.find(row => row.Symbol === ticker);
 
     if (!record) {
         return res.status(404).json({ error: `Company with ticker '${ticker}' not found` });

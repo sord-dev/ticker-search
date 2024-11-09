@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const getEarnings = async (ticker) => {
+module.exports.getEarnings = async (ticker) => {
     const response = await axios.get(`https://api.api-ninjas.com/v1/earningscalendar?ticker=${ticker}`);
     return response.data;
 }
