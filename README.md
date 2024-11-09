@@ -31,11 +31,11 @@ This project aims to track earnings dates for a list of stocks and notify users 
    - Notification system to alert users about upcoming or recently released earnings.
 
 ### Technical Stack
-* **Frontend:** React or Vue.js
-* **Backend:** Python (Flask or Django) or Node.js
+* **Frontend:** React or HTML CSS JS
+* **Backend:** Node.js
 * **Database:** PostgreSQL or MongoDB
-* **Cloud Platform:** Azure or AWS
-* **Data Processing:** Pandas, NumPy
+* **Cloud Platform:** Azure or Render
+* **Data Processing:** Python, Pandas
 
 ### Deployment
 * **Azure:**
