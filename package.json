@@ -1,0 +1,22 @@
+{
+  "name": "earnings-tracker",
+  "version": "1.0.0",
+  "description": "Using open datasets, aggregate as many up to date csv files containing stock ticker and company names to collate a list large list of them to query.\r Using this list, then utilzing the search to find information on the individual companies, specifically around earnings dates, and *potentially* the resultant revaluation of that company's stock.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
