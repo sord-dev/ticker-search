@@ -87,6 +87,5 @@ Example notification:
 1. Clone this repository.
 2. Set up the required environment (Python, Node.js, etc.).
 3. Install dependencies using `pip install -r requirements.txt`.
-4. Configure the data sources and API keys.
-5. Run the data aggregation script.
-6. Deploy the frontend and backend applications.
+4. Run the data aggregation script.
+5. Run the backend and test out the routes.

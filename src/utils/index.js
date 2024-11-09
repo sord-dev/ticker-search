@@ -1,9 +1,10 @@
 const fs = require('fs');
 const csv = require('csv-parser');
+const jwt = require('jsonwebtoken');
 
 module.exports.loadCSVData = (csvFilePath) => {
     const results = [];
-    
+
     fs.createReadStream(csvFilePath)
         .pipe(csv()) // Automatically parses the CSV into objects
         .on('data', (data) => results.push(data)) // Push each row into the results array
@@ -40,4 +41,10 @@ module.exports.FromNow = {
     hour: Date.now() + 1000 * 60 * 60,
     minute: Date.now() + 1000 * 60,
     second: Date.now() + 1000
+}
+
+module.exports.JWT = {
+    sign: (payload, options) => jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h', ...options }),
+    verify: (token, options) => jwt.verify(token, process.env.JWT_SECRET, { ...options }),
+    decode: (token, decodeOptions) => jwt.decode(token, { ...decodeOptions })
 }
