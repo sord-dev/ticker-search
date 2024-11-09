@@ -2,6 +2,8 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const jwt = require('jsonwebtoken');
 
+const logger = require('./logger');
+
 module.exports.loadCSVData = (csvFilePath) => {
     const results = [];
 
@@ -9,10 +11,10 @@ module.exports.loadCSVData = (csvFilePath) => {
         .pipe(csv()) // Automatically parses the CSV into objects
         .on('data', (data) => results.push(data)) // Push each row into the results array
         .on('end', () => {
-            console.log('CSV data loaded successfully');
+            logger.info(`CSV file successfully processed. Total records: ${results.length}`);
         })
         .on('error', (err) => {
-            console.error('Error reading the CSV file:', err.message);
+            logger.error(`Error while processing CSV file: ${err.message}`);
         });
 
     return results;
@@ -48,3 +50,5 @@ module.exports.JWT = {
     verify: (token, options) => jwt.verify(token, process.env.JWT_SECRET, { ...options }),
     decode: (token, decodeOptions) => jwt.decode(token, { ...decodeOptions })
 }
+
+module.exports.logger = logger;

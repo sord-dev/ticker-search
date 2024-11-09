@@ -10,5 +10,6 @@ app.use('/api/earning', (_, res) => { res.redirect(301, '/api/earnings') });
 app.use('/api/earn', (_, res) => { res.redirect(301, '/api/earnings') });
 
 app.use('/api/auth', require('./routes/auth.routes.js'));
+app.use('/api/authentication', (_, res) => { res.redirect(301, '/api/auth') });
 
 module.exports = app;

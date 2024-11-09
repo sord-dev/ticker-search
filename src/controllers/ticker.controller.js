@@ -1,5 +1,5 @@
 const path = require('path');
-const { loadCSVData } = require('../utils');
+const { loadCSVData, logger } = require('../utils');
 
 // Define the fixed path for the CSV file
 const csvFilePath = path.join('combined_file.csv');
@@ -13,8 +13,9 @@ module.exports.getTickers = (req, res) => {
     }
 
     const { page, limit, startIndex, endIndex } = req.pagination;
-
     const results = csvData.slice(startIndex, endIndex);
+    logger.info(`Fetched ${results.length} records from CSV data`);
+
     res.json({  page, limit, results });
 }
 
@@ -26,5 +27,6 @@ module.exports.getTicker = (req, res) => {
         return res.status(404).json({ error: `Company with ticker '${ticker}' not found` });
     }
 
+    logger.info(`Fetched record for ${ticker} from CSV data`);
     res.json(record);
 }
