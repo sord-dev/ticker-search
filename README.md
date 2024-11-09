@@ -52,6 +52,37 @@ This project aims to track earnings dates for a list of stocks and notify users 
 * **Machine Learning:** Predict stock price movements based on earnings and other factors.
 * **Integration with Trading Platforms:** Direct integration with popular trading platforms.
 
+
+### Code Flow
+
+1. A scheduled job aggregates all ticker & company name info into a main csv
+2. Csv is either processed into a db, or stored in blob storage
+3. Csv information is loaded into backend service to then be checked and displayed on front end**¹**
+4. User requests for information on specific tickers
+5. We utilize an external earnings calandar api to display the information of the tickers
+
+**¹** - This checking consists of reviewing user's watch-listed tickers and providing a notification if there was an update in the past 3 days they had not previously aknowledged.
+  
+Example notification:
+```json
+{ "user_id": 122, "ak": false, "ticker": "TLSA", "actual_revenue": 25182000000, "estimated_revenue": 25468371161 }
+```
+
+### Earnings Calandar
+
+- Would like a full calandar view of all watched tickers (can toggle)
+- A list of all comapanies on the date selected **and** an option to click to that individual event
+
+![https://markets.businessinsider.com/earnings-calendar](https://i.ibb.co/HpgBZqS/Screenshot-1.png)
+![https://www.qualtrim.com earnings-calendar](https://i.ibb.co/vBt380D/Screenshot-1.png)
+
+
+### General theme
+
+- If we can get more information about the individual stock from other places then even better
+![https://www.qualtrim.com/](https://www.qualtrim.com/assets/landing/watchlist.png)
+![https://www.qualtrim.com/](https://www.qualtrim.com/assets/landing/splash-img.png)
+
 **To get started:**
 1. Clone this repository.
 2. Set up the required environment (Python, Node.js, etc.).
