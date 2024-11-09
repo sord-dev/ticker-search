@@ -32,3 +32,12 @@ module.exports.paginationMiddleware = (req, res, next) => {
 
     next();
 }
+
+module.exports.FromNow = {
+    month: Date.now() + 1000 * 60 * 60 * 24 * 30,
+    week: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    day: Date.now() + 1000 * 60 * 60 * 24,
+    hour: Date.now() + 1000 * 60 * 60,
+    minute: Date.now() + 1000 * 60,
+    second: Date.now() + 1000
+}

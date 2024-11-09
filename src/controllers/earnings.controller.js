@@ -1,10 +1,31 @@
 const axios = require('axios');
+const path = require('path');
+const fs = require('fs');
+const { FromNow } = require('../utils');
+
+// check if cache exists, if not create it (to be replaced with a proper cache system)
+const cache = path.join(__dirname, '..', 'cache', 'earnings.json');
+if (!fs.existsSync(cache)) fs.writeFileSync(cache, '{}');
 
 const getEarnings = async (ticker) => {
-    const response = await axios.get(`https://api.api-ninjas.com/v1/earningscalendar?ticker=${ticker}`);
-    if(response.status === 404 || !response.data.length) throw new Error('Error: Failed to find earnings data');
-    return response.data;
-}
+    const cachedResponse = JSON.parse(await fs.promises.readFile(cache)); 
+    if (cachedResponse.hasOwnProperty(ticker) && cachedResponse[ticker].ttl > Date.now()) {
+        console.log('Using cached earnings data');
+        const cachedEarnings = cachedResponse[ticker];
+        return cachedEarnings.data;
+    }
+    else {
+        const response = await axios.get(`https://api.api-ninjas.com/v1/earningscalendar?ticker=${ticker}`);
+        if (response.status === 404 || !response.data.length) throw new Error('Error: Failed to find earnings data');
+
+        const cachedResponse = JSON.parse(await fs.promises.readFile(cache));
+        const newItem = { data: response.data, ttl: FromNow.week };
+        const newCache = Object.assign({}, cachedResponse, {[ticker]: newItem});
+
+        await fs.promises.writeFile(cache, JSON.stringify(newCache, null, 2));
+        return response.data;
+    }
+};
 
 const getEarningsData = async (req, res) => {
     const { ticker } = req.params;

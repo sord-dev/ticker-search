@@ -27,22 +27,23 @@ This project aims to track earnings dates for a list of stocks and notify users 
    - User profiles to manage watchlists and notifications.
 2. **Backend Logic:**
    - Scheduled tasks to fetch and process data.
-   - API endpoints to serve data to the frontend.
+   - API endpoints to cache & serve data to the frontend.
    - Notification system to alert users about upcoming or recently released earnings.
 
 ### Technical Stack
 * **Frontend:** React or HTML CSS JS
 * **Backend:** Node.js
 * **Database:** PostgreSQL or MongoDB
-* **Cloud Platform:** Azure or Render
+* **Cloud Platform:** Azure or OnRender
 * **Data Processing:** Python, Pandas
 
 ### Deployment
-* **Azure:**
+* **Azure [(est £15.87)](https://azure.com/e/0d68de032dcd4d3496f12e49b8c94684):**
   - Azure Functions for serverless execution.
   - Azure Storage Account for data storage.
   - Azure App Service for web application deployment.
-* **Render:**
+  - Azure Redis Cache for web application caching.
+* **Render: [(est £14-£18)](https://render.com/pricing#static-sites)**
   - Web Service and PostgreSQL for backend.
   - Static Site for frontend.
 
@@ -51,7 +52,6 @@ This project aims to track earnings dates for a list of stocks and notify users 
 * **Sentiment Analysis:** Analyze news articles and social media to gauge market sentiment.
 * **Machine Learning:** Predict stock price movements based on earnings and other factors.
 * **Integration with Trading Platforms:** Direct integration with popular trading platforms.
-
 
 ### Code Flow
 
